@@ -1,0 +1,16 @@
+﻿@model ResponsiveImages.Models.ArticleImageModel
+
+@if (Model.IsExperienceEditor)
+{
+    @Html.Sitecore().Field("Main Image", new { style = "width:100%; height:auto" })
+}
+else
+{
+    <picture>
+        @foreach(var image in Model.Images)
+                {
+                    <source media="@image.MediaQuery" srcset="@Model.MainImage&t=@image.Transformation" />
+                }
+        <img class="img-fluid" src="@Model.MainImage" alt="" />
+    </picture>
+}
